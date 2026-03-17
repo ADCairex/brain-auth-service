@@ -10,7 +10,7 @@ from ..database import get_db
 from ..models import User
 from ..schemas import LoginRequest, OkResponse, RegisterRequest, UserOut
 
-router = APIRouter(prefix="/auth", tags=["auth"])
+router = APIRouter(tags=["auth"])
 
 
 def _hash_password(plain: str) -> str:

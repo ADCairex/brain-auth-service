@@ -27,3 +27,24 @@ jobs:
 
       - name: Lint
         run: uv run ruff check src/
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Test with coverage
+        run: uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=90
